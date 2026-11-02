@@ -1,0 +1,1243 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:title" content="Gonzalo Estevas-Guilmain Morán · Flight dynamics &amp; control">
+<meta property="og:description" content="Flight Control System Engineer. MSc Aerospace Dynamics, Cranfield University. Experience, research and projects.">
+<meta property="og:type" content="website">
+<title>Gonzalo Estevas-Guilmain Morán</title>
+
+<meta name="description" content="Portfolio of Gonzalo Estevas-Guilmain Morán, Flight Control System Engineer: flight dynamics, flight control, aircraft modelling and simulation, system identification and verification.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=JetBrains+Mono:wght@400;500&family=Source+Serif+4:ital,opsz,wght@0,8..60,400;0,8..60,600;1,8..60,400&display=swap">
+<style>
+/* Layout: a flight-test card. Cool drafting-white sheet, navy ink, international-orange test markings;
+   figures sit on white plates; a single reading column with wide bands for the career track and figures. */
+:root {
+  --bg: #f2f4f5;
+  --surface: #ffffff;
+  --plate: #ffffff;
+  --ink: #13233a;
+  --ink-2: #4b5b6f;
+  --ink-3: #6f7d8e;
+  --rule: #d6dde4;
+  --grid: #e6ebef;
+  --accent: #e4531b;
+  --accent-ink: #b5400f;
+  --accent-soft: #fbe5da;
+  --data: #1f5fa8;
+  --data-soft: #dce8f6;
+  --ok: #2f7d4f;
+  --shadow: 0 1px 2px rgba(19,35,58,.06), 0 8px 24px rgba(19,35,58,.06);
+  --f-display: "Archivo", "Arial Narrow", "Helvetica Neue", Arial, sans-serif;
+  --f-body: "Source Serif 4", "Source Serif Pro", Georgia, "Times New Roman", serif;
+  --f-mono: "JetBrains Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
+  --f-ui: "Archivo", "Helvetica Neue", Arial, sans-serif;
+  --maxw: 1120px;
+  --read: 68ch;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0c141e; --surface: #131e2b; --plate: #f4f6f8; --ink: #e6ecf2; --ink-2: #a3b2c3; --ink-3: #7f90a3;
+    --rule: #263548; --grid: #1a2736; --accent: #ff7a45; --accent-ink: #ff9466; --accent-soft: #3a2116;
+    --data: #74aaeb; --data-soft: #1b2c42; --ok: #5cc28a;
+    --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0c141e; --surface: #131e2b; --plate: #f4f6f8; --ink: #e6ecf2; --ink-2: #a3b2c3; --ink-3: #7f90a3;
+  --rule: #263548; --grid: #1a2736; --accent: #ff7a45; --accent-ink: #ff9466; --accent-soft: #3a2116;
+  --data: #74aaeb; --data-soft: #1b2c42; --ok: #5cc28a;
+  --shadow: 0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  background: var(--bg); color: var(--ink);
+  font-family: var(--f-body); font-size: 17px; line-height: 1.6;
+  -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+a { color: var(--accent-ink); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+a:hover { text-decoration-thickness: 2px; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; }
+h1, h2, h3, h4 { font-family: var(--f-display); color: var(--ink); text-wrap: balance; margin: 0; }
+p { margin: 0; }
+ul { margin: 0; padding-left: 1.15em; }
+li + li { margin-top: .35em; }
+.wrap {
+  max-width: var(--maxw); margin: 0 auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.mono { font-family: var(--f-mono); font-size: .78rem; letter-spacing: .02em; font-variant-numeric: tabular-nums; }
+.eyebrow { font-family: var(--f-mono); font-size: .74rem; letter-spacing: .12em; text-transform: uppercase; color: var(--ink-3); }
+
+/* ---------- top bar ---------- */
+.topbar {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 20;
+  background: color-mix(in srgb, var(--bg) 88%, transparent);
+  backdrop-filter: saturate(1.4) blur(10px); -webkit-backdrop-filter: saturate(1.4) blur(10px);
+  border-bottom: 1px solid var(--rule);
+}
+.topbar .wrap { display: flex; align-items: center; gap: 20px; min-height: 56px; }
+.mark {
+  font-family: var(--f-display); font-stretch: 125%; font-weight: 800; font-size: 1rem; letter-spacing: .04em;
+  color: var(--ink); text-decoration: none; display: flex; align-items: center; gap: 10px; white-space: nowrap;
+}
+.mark i { width: 10px; height: 10px; background: var(--accent); display: inline-block; transform: rotate(45deg); }
+.nav { display: flex; gap: 4px; margin-left: auto; overflow-x: auto; scrollbar-width: none; min-width: 0; }
+.nav::-webkit-scrollbar { display: none; }
+.nav a {
+  font-family: var(--f-ui); font-size: .86rem; font-weight: 500; color: var(--ink-2); text-decoration: none;
+  padding: 6px 10px; border-radius: 6px; white-space: nowrap;
+}
+.nav a:hover { color: var(--ink); background: var(--grid); }
+
+/* ---------- hero ---------- */
+.hero { padding-block: clamp(36px, 7vw, 84px) clamp(28px, 5vw, 56px); }
+.hero .wrap { display: grid; grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); gap: clamp(28px, 5vw, 64px); align-items: start; }
+.hero h1 {
+  font-stretch: 118%; font-weight: 800; letter-spacing: -.01em;
+  font-size: clamp(2.3rem, 5.6vw, 4.4rem); line-height: .98; margin-top: 14px;
+}
+.hero h1 span { display: block; }
+.hero h1 .surname { color: var(--ink-2); font-weight: 700; font-size: .74em; margin-top: .08em; }
+.role {
+  margin-top: 20px; font-family: var(--f-ui); font-stretch: 100%; font-size: clamp(1.05rem, 1.6vw, 1.2rem); font-weight: 600; color: var(--ink);
+  display: flex; flex-wrap: wrap; gap: 6px 14px; align-items: baseline;
+}
+.role .at { color: var(--ink-2); font-weight: 500; }
+.lead { margin-top: 18px; max-width: 60ch; color: var(--ink-2); font-size: 1.06rem; }
+.actions { margin-top: 26px; display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+.btn {
+  font-family: var(--f-ui); font-weight: 600; font-size: .92rem; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 8px; padding: 10px 16px; border-radius: 8px;
+  border: 1px solid var(--ink); color: var(--ink); background: transparent; cursor: pointer;
+}
+.btn.primary { background: var(--ink); color: var(--bg); }
+.btn:hover { text-decoration: none; transform: translateY(-1px); }
+.btn svg { width: 16px; height: 16px; }
+.email-chip {
+  display: inline-flex; align-items: center; gap: 8px; padding: 6px 6px 6px 12px; border: 1px dashed var(--rule);
+  border-radius: 8px; font-family: var(--f-mono); font-size: .82rem; color: var(--ink-2); user-select: all;
+}
+.email-chip button {
+  font-family: var(--f-ui); font-size: .76rem; font-weight: 600; border: 0; border-radius: 6px; padding: 5px 9px;
+  background: var(--grid); color: var(--ink); cursor: pointer; user-select: none;
+}
+
+/* s-plane card */
+.splane { background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; box-shadow: var(--shadow); overflow: hidden; }
+.splane-head { display: flex; justify-content: space-between; align-items: center; gap: 8px 12px; flex-wrap: wrap; padding: 12px 14px; border-bottom: 1px solid var(--rule); }
+.splane-head .eyebrow { color: var(--ink-2); }
+.toggle { display: inline-flex; border: 1px solid var(--rule); border-radius: 8px; overflow: hidden; flex-shrink: 0; }
+.toggle button {
+  font-family: var(--f-ui); font-size: .76rem; font-weight: 600; padding: 6px 10px; border: 0; background: transparent; color: var(--ink-2); cursor: pointer;
+}
+.toggle button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+.splane canvas { display: block; width: 100%; aspect-ratio: 1.3; }
+.bd-wrap { border-top: 1px solid var(--rule); padding: 10px 12px 12px; display: grid; gap: 6px; }
+.bd-wrap .eyebrow { color: var(--ink-2); }
+.bd { display: block; width: 100%; height: auto; overflow: visible; }
+.bd[hidden] { display: none; }
+.bd text { font-family: var(--f-ui); font-size: 12.5px; fill: var(--ink); }
+.bd text.sub { font-family: var(--f-mono); font-size: 10.5px; fill: var(--ink-2); }
+.bd text.sig { font-family: var(--f-mono); font-size: 11px; fill: var(--ink-2); }
+.bd .box { fill: var(--surface); stroke: var(--ink-3); stroke-width: 1.2; }
+.bd .box.plant { stroke: var(--data); stroke-width: 1.6; fill: var(--data-soft); }
+.bd .wire { fill: none; stroke: var(--ink-2); stroke-width: 1.5; }
+.bd .ah { fill: var(--ink-2); }
+.bd .fb .wire { stroke: var(--accent); }
+.bd .fb .ah { fill: var(--accent); }
+.bd .fb .box { stroke: var(--accent); }
+.bd .fb, .bd .sum { opacity: .28; transition: opacity .4s ease; }
+.bd .fb .wire { stroke-dasharray: 4 4; }
+.bd.on .fb, .bd.on .sum { opacity: 1; }
+.bd.on .fb .wire { stroke-dasharray: 7 5; }
+@media (prefers-reduced-motion: no-preference) {
+  .bd.on .fb .wire { animation: flow 1.1s linear infinite; }
+  @keyframes flow { to { stroke-dashoffset: -24; } }
+}
+.bd-head { display: flex; justify-content: space-between; align-items: center; gap: 10px; flex-wrap: wrap; }
+.tabs { display: inline-flex; border: 1px solid var(--rule); border-radius: 7px; overflow: hidden; }
+.tabs button { font-family: var(--f-ui); font-size: .72rem; font-weight: 600; padding: 4px 9px; border: 0; background: transparent; color: var(--ink-2); cursor: pointer; }
+.tabs button[aria-pressed="true"] { background: var(--grid); color: var(--ink); }
+.sw { display: inline-flex; align-items: center; gap: 7px; font-family: var(--f-ui); font-size: .76rem; font-weight: 600; padding: 6px 10px; border: 1px solid var(--rule); border-radius: 8px; background: transparent; color: var(--ink-2); cursor: pointer; }
+.sw i { width: 22px; height: 12px; border-radius: 999px; background: var(--rule); position: relative; flex-shrink: 0; transition: background .2s; }
+.sw i::after { content: ""; position: absolute; top: 2px; left: 2px; width: 8px; height: 8px; border-radius: 50%; background: var(--surface); transition: transform .2s; }
+.sw[aria-pressed="true"] { color: var(--ink); border-color: var(--ink-3); }
+.sw[aria-pressed="true"] i { background: var(--accent); }
+.sw[aria-pressed="true"] i::after { transform: translateX(10px); }
+.switches { display: flex; gap: 6px; flex-wrap: wrap; }
+.bd-eq { font-family: var(--f-mono); font-size: .78rem; color: var(--ink); font-variant-numeric: tabular-nums; }
+.bd-eq span { display: inline-block; margin-right: 6px; }
+.bd-eq span { color: var(--ink-3); }
+.modes { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); border-top: 1px solid var(--rule); }
+.modes div { padding: 9px 12px; border-right: 1px solid var(--rule); min-width: 0; }
+.modes div:last-child { border-right: 0; }
+.modes b { display: block; font-family: var(--f-ui); font-size: .76rem; font-weight: 600; color: var(--ink-2); }
+.modes span { font-family: var(--f-mono); font-size: .8rem; color: var(--ink); font-variant-numeric: tabular-nums; }
+.splane-foot { padding: 10px 14px 12px; border-top: 1px solid var(--rule); font-size: .82rem; color: var(--ink-3); line-height: 1.45; }
+
+/* stats */
+.stats { border-top: 1px solid var(--rule); border-bottom: 1px solid var(--rule); background: var(--surface); }
+.stats .wrap { display: grid; grid-template-columns: repeat(4, minmax(0,1fr)); }
+.stat { padding: 18px 18px 18px 0; display: grid; gap: 4px; align-content: start; }
+.stat + .stat { padding-left: 18px; border-left: 1px solid var(--rule); }
+.stat .n { font-family: var(--f-display); font-stretch: 112%; font-weight: 800; font-size: clamp(1.5rem, 3vw, 2.1rem); line-height: 1; font-variant-numeric: tabular-nums; }
+.stat .n small { font-size: .5em; font-weight: 600; color: var(--ink-3); margin-left: 3px; }
+.stat .l { font-family: var(--f-ui); font-size: .84rem; color: var(--ink-2); line-height: 1.35; }
+
+/* sections */
+section.block { padding-block: clamp(48px, 8vw, 88px) 0; }
+.sec-head { display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 12px 40px; align-items: end; margin-bottom: 28px; }
+.sec-head h2 { font-stretch: 112%; font-weight: 800; font-size: clamp(1.6rem, 3.2vw, 2.3rem); line-height: 1.05; }
+.sec-head p { color: var(--ink-2); max-width: var(--read); }
+.sec-head .eyebrow { grid-column: 1; }
+.sec-head p { grid-column: 2; }
+
+/* career track */
+.track { background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding: 18px 18px 10px; overflow-x: auto; }
+.track-inner { min-width: 640px; }
+.years { position: relative; height: 22px; border-bottom: 1px solid var(--rule); margin-left: 230px; }
+.years span { position: absolute; top: 0; transform: translateX(-1px); font-family: var(--f-mono); font-size: .72rem; color: var(--ink-3); padding-left: 5px; border-left: 1px solid var(--rule); height: 22px; }
+.trow { display: grid; grid-template-columns: 230px 1fr; align-items: center; min-height: 34px; }
+.trow .tl { font-family: var(--f-ui); font-size: .84rem; font-weight: 600; color: var(--ink); padding-right: 14px; line-height: 1.2; }
+.trow .tl small { display: block; font-weight: 500; color: var(--ink-3); font-size: .76rem; }
+.lane { position: relative; height: 34px; background-image: linear-gradient(to right, var(--grid) 1px, transparent 1px); background-size: calc(100% / 7 * 1) 100%; }
+.bar { position: absolute; top: 9px; height: 16px; border-radius: 4px; background: var(--data-soft); border: 1px solid var(--data); }
+.bar.work { background: var(--accent-soft); border-color: var(--accent); }
+.bar.other { background: transparent; border-style: dashed; border-color: var(--ink-3); }
+.bar.now { border-right: 0; border-radius: 4px 0 0 4px; background: linear-gradient(90deg, var(--accent-soft) 60%, transparent); }
+.legend { display: flex; flex-wrap: wrap; gap: 16px; margin: 12px 0 4px 230px; font-family: var(--f-ui); font-size: .78rem; color: var(--ink-2); }
+.legend i { display: inline-block; width: 18px; height: 10px; border-radius: 3px; vertical-align: -1px; margin-right: 6px; background: var(--data-soft); border: 1px solid var(--data); }
+.legend i.w { background: var(--accent-soft); border-color: var(--accent); }
+.legend i.o { background: transparent; border: 1px dashed var(--ink-3); }
+
+/* entries (experience / education) */
+.entries { display: grid; gap: 16px; margin-top: 22px; }
+.entry {
+  display: grid; grid-template-columns: minmax(0, 220px) minmax(0, 1fr); gap: 8px 40px;
+  padding: 22px 0; border-top: 1px solid var(--rule);
+}
+.entry:first-child { border-top: 0; }
+.entry .when { font-family: var(--f-mono); font-size: .8rem; color: var(--ink-2); line-height: 1.5; font-variant-numeric: tabular-nums; }
+.entry .when .tag { display: flex; width: fit-content; margin-top: 10px; }
+.entry h3 { font-stretch: 104%; font-weight: 700; font-size: 1.22rem; line-height: 1.25; }
+.entry .org { margin-top: 3px; font-family: var(--f-ui); font-size: .95rem; color: var(--ink-2); }
+.entry .org b { color: var(--ink); font-weight: 600; }
+.entry .body { display: grid; gap: 10px; min-width: 0; max-width: 74ch; }
+.entry ul { color: var(--ink); }
+.entry .note { font-size: .92rem; color: var(--ink-2); }
+.tag {
+  display: inline-flex; align-items: center; gap: 6px; font-family: var(--f-mono); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase;
+  padding: 3px 7px; border-radius: 4px; border: 1px solid var(--rule); color: var(--ink-2); background: var(--surface); white-space: nowrap;
+}
+.tag.pro { border-color: var(--accent); color: var(--accent-ink); }
+.tag.acad { border-color: var(--data); color: var(--data); }
+.tag.self { border-style: dashed; }
+.tags { display: flex; flex-wrap: wrap; gap: 6px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip { font-family: var(--f-ui); font-size: .78rem; font-weight: 500; padding: 3px 9px; border-radius: 999px; background: var(--grid); color: var(--ink); }
+.honour { display: inline-flex; gap: 8px; align-items: baseline; padding: 8px 12px; border-left: 3px solid var(--accent); background: var(--accent-soft); color: var(--ink); font-size: .94rem; border-radius: 0 6px 6px 0; }
+
+/* figures */
+.fig {
+  display: block; width: 100%; padding: 10px; margin: 0; border: 1px solid var(--rule); border-radius: 8px;
+  background: var(--plate); cursor: zoom-in; position: relative;
+}
+.fig img { display: block; width: 100%; height: auto; border-radius: 3px; }
+.fig:hover { border-color: var(--ink-3); }
+figure { margin: 0; display: grid; gap: 8px; min-width: 0; }
+figcaption { font-size: .84rem; line-height: 1.45; color: var(--ink-3); }
+figcaption b { color: var(--ink-2); font-weight: 600; }
+
+/* research feature */
+.feature { background: var(--surface); border: 1px solid var(--rule); border-radius: 14px; box-shadow: var(--shadow); overflow: hidden; }
+.feature-top { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: 0; }
+.feature-text { padding: clamp(20px, 3.5vw, 36px); display: grid; gap: 16px; align-content: start; border-right: 1px solid var(--rule); }
+.feature-text h3 { font-stretch: 108%; font-weight: 800; font-size: clamp(1.4rem, 2.6vw, 1.9rem); line-height: 1.12; }
+.feature-text .meta { font-family: var(--f-mono); font-size: .78rem; color: var(--ink-2); line-height: 1.6; }
+.pub { display: inline-flex; align-items: center; gap: 8px; font-family: var(--f-ui); font-weight: 600; font-size: .86rem; color: var(--ok); }
+.pub::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--ok); box-shadow: 0 0 0 4px color-mix(in srgb, var(--ok) 22%, transparent); }
+.feature-fig { padding: clamp(16px, 2.5vw, 28px); display: grid; align-content: center; background: var(--bg); }
+.steps { list-style: none; padding: 0; margin: 0; display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); border-top: 1px solid var(--rule); counter-reset: s; }
+.steps li { margin: 0; padding: 16px 18px 18px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); counter-increment: s; min-width: 0; }
+.steps li:nth-child(3n) { border-right: 0; }
+.steps li:nth-last-child(-n+3) { border-bottom: 0; }
+.steps li::before { content: counter(s); font-family: var(--f-mono); font-size: .72rem; font-weight: 500; color: var(--accent-ink); display: block; margin-bottom: 6px; }
+.steps b { display: block; font-family: var(--f-ui); font-size: .95rem; font-weight: 700; margin-bottom: 4px; }
+.steps span { font-size: .9rem; color: var(--ink-2); line-height: 1.5; display: block; }
+.feature-gallery { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; padding: clamp(16px, 2.5vw, 28px); border-top: 1px solid var(--rule); }
+
+/* project rows */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+.filters button {
+  font-family: var(--f-ui); font-size: .84rem; font-weight: 600; padding: 7px 12px; border-radius: 999px;
+  border: 1px solid var(--rule); background: var(--surface); color: var(--ink-2); cursor: pointer;
+}
+.filters button[aria-pressed="true"] { background: var(--ink); border-color: var(--ink); color: var(--bg); }
+.projects { display: grid; gap: 18px; }
+.proj {
+  display: grid; grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.25fr); gap: clamp(18px, 3vw, 34px);
+  background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding: clamp(16px, 2.4vw, 24px);
+}
+.proj .p-text { display: grid; gap: 12px; align-content: start; min-width: 0; }
+.proj h3 { font-stretch: 104%; font-weight: 750; font-size: 1.28rem; line-height: 1.2; }
+.proj .meta { font-family: var(--f-mono); font-size: .76rem; color: var(--ink-3); line-height: 1.55; }
+.proj p.sum { color: var(--ink); }
+details { border-top: 1px solid var(--rule); padding-top: 10px; }
+summary {
+  cursor: pointer; font-family: var(--f-ui); font-weight: 600; font-size: .88rem; color: var(--accent-ink);
+  list-style: none; display: inline-flex; align-items: center; gap: 8px;
+}
+summary::-webkit-details-marker { display: none; }
+summary::before { content: "+"; font-family: var(--f-mono); width: 18px; height: 18px; display: inline-grid; place-items: center; border: 1px solid currentColor; border-radius: 4px; font-size: .8rem; }
+details[open] summary::before { content: "–"; }
+details .more { display: grid; gap: 14px; margin-top: 12px; }
+details ul { font-size: .95rem; }
+.thumbs { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
+.team { font-size: .9rem; color: var(--ink-2); border-left: 2px solid var(--rule); padding-left: 10px; }
+
+/* two-up panels */
+.duo { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 18px; }
+.panel { background: var(--surface); border: 1px solid var(--rule); border-radius: 12px; padding: clamp(18px, 2.6vw, 26px); display: grid; gap: 12px; align-content: start; min-width: 0; }
+.panel h3 { font-stretch: 104%; font-weight: 750; font-size: 1.18rem; line-height: 1.2; }
+.panel .meta { font-family: var(--f-mono); font-size: .76rem; color: var(--ink-3); }
+.panel ul { font-size: .95rem; }
+.lab { position: relative; overflow: hidden; border: 1px solid var(--ink); background: var(--ink); color: var(--bg); border-radius: 14px; padding: clamp(22px, 4vw, 40px); display: grid; grid-template-columns: minmax(0,1.2fr) minmax(0,1fr); gap: 28px; align-items: center; }
+.lab h3 { color: var(--bg); font-stretch: 118%; font-weight: 800; font-size: clamp(1.5rem, 3vw, 2.2rem); line-height: 1.05; }
+.lab p { color: color-mix(in srgb, var(--bg) 78%, var(--ink)); max-width: 56ch; }
+.lab .eyebrow { color: var(--accent); }
+.lab .mods { display: grid; gap: 8px; list-style: none; padding: 0; }
+.lab .mods li { margin: 0; display: flex; justify-content: space-between; gap: 12px; padding: 10px 12px; border: 1px solid color-mix(in srgb, var(--bg) 22%, transparent); border-radius: 8px; font-family: var(--f-ui); font-size: .9rem; }
+.lab .mods li span { font-family: var(--f-mono); font-size: .72rem; color: var(--accent); white-space: nowrap; }
+
+/* skills */
+.skills { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; border-top: 1px solid var(--rule); border-left: 1px solid var(--rule); }
+.skill { padding: 18px; border-right: 1px solid var(--rule); border-bottom: 1px solid var(--rule); display: grid; gap: 10px; align-content: start; background: var(--surface); min-width: 0; }
+.skill h3 { font-family: var(--f-ui); font-stretch: 100%; font-size: .98rem; font-weight: 700; }
+.langs { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
+.lang { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 14px 16px; display: grid; gap: 8px; }
+.lang b { font-family: var(--f-ui); font-weight: 700; font-size: 1rem; }
+.meter { display: grid; grid-template-columns: repeat(6, 1fr); gap: 3px; }
+.meter i { height: 6px; border-radius: 2px; background: var(--grid); }
+.meter i.on { background: var(--data); }
+.lang .mono { color: var(--ink-2); }
+
+/* contact */
+.contact { margin-top: clamp(48px, 8vw, 88px); background: var(--surface); border-top: 1px solid var(--rule); }
+.contact .wrap { padding-block: clamp(36px, 6vw, 64px); display: grid; grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); gap: 28px; align-items: end; }
+.contact h2 { font-stretch: 118%; font-weight: 800; font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.02; }
+.contact p { color: var(--ink-2); margin-top: 12px; max-width: 52ch; }
+.contact .links { display: grid; gap: 10px; justify-items: start; }
+footer { border-top: 1px solid var(--rule); }
+footer .wrap { padding-block: 18px; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 8px 24px; font-size: .82rem; color: var(--ink-3); }
+
+/* lightbox */
+dialog.lb { border: 0; padding: 0; background: transparent; max-width: min(1200px, 94vw); width: 100%; }
+dialog.lb::backdrop { background: rgba(8, 14, 22, .82); }
+.lb-inner { background: var(--plate); border-radius: 10px; padding: 14px; display: grid; gap: 10px; }
+.lb-inner img { width: 100%; height: auto; max-height: 78vh; object-fit: contain; }
+.lb-cap { font-size: .9rem; color: #42505f; }
+.lb-close { justify-self: end; font-family: var(--f-ui); font-weight: 600; font-size: .85rem; border: 1px solid #c8d0d8; background: #fff; color: #13233a; border-radius: 6px; padding: 6px 10px; cursor: pointer; }
+
+/* reveal (resting state is visible) */
+@media (prefers-reduced-motion: no-preference) {
+  .rise { animation: rise .7s cubic-bezier(.2,.7,.2,1) both; }
+  .rise.d1 { animation-delay: .06s; } .rise.d2 { animation-delay: .14s; } .rise.d3 { animation-delay: .22s; }
+  @keyframes rise { from { transform: translateY(10px); opacity: .001; } to { transform: none; opacity: 1; } }
+  .btn { transition: transform .15s ease; }
+}
+
+/* responsive */
+@media (max-width: 920px) {
+  .hero .wrap { grid-template-columns: 1fr; }
+  .feature-top { grid-template-columns: 1fr; }
+  .feature-text { border-right: 0; border-bottom: 1px solid var(--rule); }
+  .proj { grid-template-columns: 1fr; }
+  .lab { grid-template-columns: 1fr; }
+  .skills { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .contact .wrap { grid-template-columns: 1fr; }
+}
+@media (max-width: 760px) {
+  .sec-head, .entry { grid-template-columns: 1fr; }
+  .sec-head p { grid-column: auto; }
+  .stats .wrap { grid-template-columns: repeat(2, minmax(0,1fr)); }
+  .stat:nth-child(3) { padding-left: 0; border-left: 0; }
+  .stat:nth-child(n+3) { border-top: 1px solid var(--rule); }
+  .steps { grid-template-columns: 1fr; }
+  .steps li { border-right: 0; border-bottom: 1px solid var(--rule) !important; }
+  .steps li:last-child { border-bottom: 0 !important; }
+  .feature-gallery { grid-template-columns: 1fr; }
+  .duo { grid-template-columns: 1fr; }
+  .langs { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .nav a.opt { display: none; }
+  .track { padding: 14px 14px 8px; }
+  .track-inner { min-width: 0; }
+  .trow { grid-template-columns: 1fr; padding-top: 6px; }
+  .trow .tl { padding-right: 0; }
+  .lane { height: 26px; }
+  .bar { top: 5px; }
+  .years { margin-left: 0; }
+  .legend { margin-left: 0; }
+}
+@media (max-width: 520px) {
+  body { font-size: 16px; }
+  .skills { grid-template-columns: 1fr; }
+  .thumbs { grid-template-columns: 1fr; }
+  .modes { grid-template-columns: 1fr; }
+  .modes div { border-right: 0; border-bottom: 1px solid var(--rule); display: flex; justify-content: space-between; gap: 10px; }
+  .modes div:last-child { border-bottom: 0; }
+  .mark .full { display: none; }
+}
+</style>
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%} [hidden]{display:none!important}</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="wrap">
+    <a class="mark" href="#top" aria-label="Back to top"><i></i><span>G. ESTEVAS<span class="full">-GUILMAIN</span></span></a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#research">Research</a>
+      <a href="#projects">Projects</a>
+      <a href="#skills" class="opt">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow rise">Flight dynamics &amp; control · Madrid, Spain</div>
+        <h1 class="rise d1"><span>Gonzalo</span><span class="surname">Estevas-Guilmain Morán</span></h1>
+        <div class="role rise d2"><span>Flight Control System Engineer</span><span class="at">Akkodis for Airbus Defence and Space</span></div>
+        <p class="lead rise d2">I verify flight-control and flight-management models against their requirements in MATLAB/Simulink for military and UAS programmes. Before that I specialised in flight dynamics and control at Cranfield University, where my MSc research developed a learning-based gust load alleviation controller for a flexible blended-wing-body aircraft.</p>
+        <div class="actions rise d3">
+          <a class="btn primary" href="https://www.linkedin.com/in/gonzalo-estevas" target="_blank" rel="noopener">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.75h4v11.25H3V9.75Zm6.5 0h3.8v1.6h.06c.53-1 1.83-2.05 3.77-2.05 4.03 0 4.77 2.6 4.77 6v5.7h-4v-5.05c0-1.2-.02-2.75-1.7-2.75-1.7 0-1.95 1.3-1.95 2.66V21H9.5V9.75Z"/></svg>
+            LinkedIn
+          </a>
+          <a class="btn" href="cv/Gonzalo_Estevas-Guilmain_CV.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 3v12m0 0 4.5-4.5M12 15l-4.5-4.5M4 19h16"/></svg>CV (PDF)</a>
+          <span class="email-chip"><span>gestevas@gmail.com</span><button type="button" class="copy" data-copy="gestevas@gmail.com">Copy</button></span>
+        </div>
+      </div>
+
+      <aside class="splane rise d2" aria-label="Interactive s-plane and block diagrams showing how pitch and yaw dampers change the aircraft dynamic modes">
+        <div class="splane-head">
+          <span class="eyebrow">s-plane · aircraft modes</span>
+          <div class="switches" role="group" aria-label="Stability augmentation">
+            <button type="button" class="sw" id="sw-pitch" aria-pressed="false"><i></i>Pitch damper</button>
+            <button type="button" class="sw" id="sw-yaw" aria-pressed="false"><i></i>Yaw damper</button>
+          </div>
+        </div>
+        <canvas id="splane" role="img" aria-label="Poles of the short-period, Dutch roll, roll, phugoid and spiral modes plotted on the complex plane with lines of constant damping ratio"></canvas>
+        <div class="bd-wrap">
+          <div class="bd-head">
+            <span class="eyebrow">Block diagram</span>
+            <div class="tabs" role="group" aria-label="Axis shown in the block diagram">
+              <button type="button" id="tab-pitch" aria-pressed="true">Pitch axis</button>
+              <button type="button" id="tab-yaw" aria-pressed="false">Yaw axis</button>
+            </div>
+          </div>
+          <svg class="bd" id="bd-pitch" viewBox="0 30 404 136" role="img" aria-labelledby="bd-title-pitch">
+            <title id="bd-title-pitch">Pitch-axis block diagram: the pilot stick command goes through the elevator actuator to the aircraft dynamics G(s). With the pitch damper on, pitch rate q is measured by a rate gyro, multiplied by the gain Kq and subtracted at the summing junction.</title>
+            <defs>
+              <marker id="ah-pitch" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L8,4 L0,8 z"/></marker>
+              <marker id="ahf-pitch" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L8,4 L0,8 z" style="fill: var(--accent)"/></marker>
+            </defs>
+            <rect class="box" x="4" y="42" width="60" height="40" rx="5"/>
+            <text x="34" y="59" text-anchor="middle">Pilot</text>
+            <text class="sub" x="34" y="73" text-anchor="middle">stick</text>
+            <path class="wire" d="M64 62 H83" marker-end="url(#ah-pitch)"/>
+            <text class="sig" x="74" y="54" text-anchor="middle">δc</text>
+            <g class="sum">
+              <circle cx="95" cy="62" r="11" class="box"/>
+              <path class="wire" d="M89 62 H101 M95 56 V68"/>
+              <text class="sig" x="80" y="80">−</text>
+            </g>
+            <path class="wire" d="M106 62 H126" marker-end="url(#ah-pitch)"/>
+            <rect class="box" x="128" y="42" width="72" height="40" rx="5"/>
+            <text x="164" y="59" text-anchor="middle">Actuator</text>
+            <text class="sub" x="164" y="73" text-anchor="middle">1/(τs+1)</text>
+            <path class="wire" d="M200 62 H224" marker-end="url(#ah-pitch)"/>
+            <text class="sig" x="212" y="54" text-anchor="middle">δe</text>
+            <rect class="box plant" x="226" y="36" width="104" height="52" rx="6"/>
+            <text x="278" y="56" text-anchor="middle" style="font-weight:600">Aircraft</text>
+            <text class="sub" x="278" y="72" text-anchor="middle">G(s) = q/δe</text>
+            <path class="wire" d="M330 62 H398" marker-end="url(#ah-pitch)"/>
+            <text class="sig" x="372" y="54" text-anchor="middle">q, θ</text>
+            <text class="sub" x="381" y="82" text-anchor="middle">to pilot</text>
+            <g class="fb">
+              <circle cx="352" cy="62" r="3" style="fill: var(--accent)"/>
+              <path class="wire" d="M352 62 V140 H322" marker-end="url(#ahf-pitch)"/>
+              <rect class="box" x="246" y="121" width="74" height="38" rx="5"/>
+              <text x="283" y="137" text-anchor="middle">Rate gyro</text>
+              <text class="sub" x="283" y="151" text-anchor="middle">measures q</text>
+              <path class="wire" d="M246 140 H194" marker-end="url(#ahf-pitch)"/>
+              <rect class="box" x="142" y="121" width="50" height="38" rx="5"/>
+              <text x="167" y="139" text-anchor="middle" style="font-family: var(--f-mono); font-weight:500">Kq</text>
+              <text class="sub" x="167" y="152" text-anchor="middle">gain</text>
+              <path class="wire" d="M142 140 H95 V75" marker-end="url(#ahf-pitch)"/>
+              <text class="sig" x="220" y="133" text-anchor="middle">q</text>
+            </g>
+          </svg>
+          <svg class="bd" id="bd-yaw" viewBox="0 30 404 136" role="img" aria-labelledby="bd-title-yaw" hidden>
+            <title id="bd-title-yaw">Yaw-axis block diagram: the pilot pedal command goes through the rudder actuator to the aircraft dynamics G(s). With the yaw damper on, yaw rate r is measured by a rate gyro, passed through a washout filter and the gain Kr, and subtracted at the summing junction.</title>
+            <defs>
+              <marker id="ah-yaw" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L8,4 L0,8 z"/></marker>
+              <marker id="ahf-yaw" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path class="ah" d="M0,0 L8,4 L0,8 z" style="fill: var(--accent)"/></marker>
+            </defs>
+            <rect class="box" x="4" y="42" width="60" height="40" rx="5"/>
+            <text x="34" y="59" text-anchor="middle">Pilot</text>
+            <text class="sub" x="34" y="73" text-anchor="middle">pedals</text>
+            <path class="wire" d="M64 62 H83" marker-end="url(#ah-yaw)"/>
+            <text class="sig" x="74" y="54" text-anchor="middle">δp</text>
+            <g class="sum">
+              <circle cx="95" cy="62" r="11" class="box"/>
+              <path class="wire" d="M89 62 H101 M95 56 V68"/>
+              <text class="sig" x="80" y="80">−</text>
+            </g>
+            <path class="wire" d="M106 62 H126" marker-end="url(#ah-yaw)"/>
+            <rect class="box" x="128" y="42" width="72" height="40" rx="5"/>
+            <text x="164" y="59" text-anchor="middle">Actuator</text>
+            <text class="sub" x="164" y="73" text-anchor="middle">1/(τs+1)</text>
+            <path class="wire" d="M200 62 H224" marker-end="url(#ah-yaw)"/>
+            <text class="sig" x="212" y="54" text-anchor="middle">δr</text>
+            <rect class="box plant" x="226" y="36" width="104" height="52" rx="6"/>
+            <text x="278" y="56" text-anchor="middle" style="font-weight:600">Aircraft</text>
+            <text class="sub" x="278" y="72" text-anchor="middle">G(s) = r/δr</text>
+            <path class="wire" d="M330 62 H398" marker-end="url(#ah-yaw)"/>
+            <text class="sig" x="372" y="54" text-anchor="middle">r, β</text>
+            <text class="sub" x="381" y="82" text-anchor="middle">to pilot</text>
+            <g class="fb">
+              <circle cx="352" cy="62" r="3" style="fill: var(--accent)"/>
+              <path class="wire" d="M352 62 V140 H342" marker-end="url(#ahf-yaw)"/>
+              <rect class="box" x="270" y="121" width="70" height="38" rx="5"/>
+              <text x="305" y="137" text-anchor="middle">Yaw gyro</text>
+              <text class="sub" x="305" y="151" text-anchor="middle">measures r</text>
+              <path class="wire" d="M270 140 H256" marker-end="url(#ahf-yaw)"/>
+              <rect class="box" x="192" y="121" width="62" height="38" rx="5"/>
+              <text x="223" y="137" text-anchor="middle">Washout</text>
+              <text class="sub" x="223" y="151" text-anchor="middle">s/(s+ωw)</text>
+              <path class="wire" d="M192 140 H176" marker-end="url(#ahf-yaw)"/>
+              <rect class="box" x="132" y="121" width="42" height="38" rx="5"/>
+              <text x="153" y="139" text-anchor="middle" style="font-family: var(--f-mono); font-weight:500">Kr</text>
+              <text class="sub" x="153" y="152" text-anchor="middle">gain</text>
+              <path class="wire" d="M132 140 H95 V75" marker-end="url(#ahf-yaw)"/>
+            </g>
+          </svg>
+          <div class="bd-eq" id="bd-eq"><span>pitch damper off:</span> q/δc = A(s)·G(s)</div>
+        </div>
+        <div class="modes">
+          <div><b>Short period</b><span id="m-sp">ζ 0.35 · ωn 3.0</span></div>
+          <div><b>Dutch roll</b><span id="m-dr">ζ 0.12 · ωn 1.4</span></div>
+          <div><b>Roll</b><span id="m-r">τ 0.50 s</span></div>
+        </div>
+        <p class="splane-foot">Typical transport-aircraft values, for illustration. The pitch damper feeds pitch rate back to the elevator and damps the short period. The yaw damper feeds yaw rate back to the rudder through a washout filter, so it damps the Dutch roll without opposing steady turns. The full interactive lab is in development.</p>
+      </aside>
+    </div>
+  </section>
+
+  <div class="stats">
+    <div class="wrap">
+      <div class="stat"><span class="n">82.8<small>/100</small></span><span class="l">MSc Aerospace Dynamics, Cranfield: overall average*</span></div>
+      <div class="stat"><span class="n">82<small>/100</small></span><span class="l">MSc research project, selected for publication</span></div>
+      <div class="stat"><span class="n">MH</span><span class="l">Matrícula de Honor for my BSc thesis at Airbus</span></div>
+      <div class="stat"><span class="n">4</span><span class="l">Languages: Spanish, Basque, English, French</span></div>
+    </div>
+  </div>
+
+  <!-- ===================== EXPERIENCE ===================== -->
+  <section class="block" id="experience">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Career track</div>
+        <h2>Experience</h2>
+      </div>
+
+      <div class="track" role="img" aria-label="Timeline from 2020 to 2026 of degrees, internship, current role and additional experience">
+        <div class="track-inner">
+          <div class="years">
+            <span style="left:0%">2020</span><span style="left:14.29%">2021</span><span style="left:28.57%">2022</span><span style="left:42.86%">2023</span><span style="left:57.14%">2024</span><span style="left:71.43%">2025</span><span style="left:85.71%">2026</span>
+          </div>
+          <div class="trow"><div class="tl">Flight Control System Engineer<small>Akkodis for Airbus D&amp;S</small></div><div class="lane"><span class="bar work now" style="left:94.05%;width:5.95%"></span></div></div>
+          <div class="trow"><div class="tl">MSc Aerospace Dynamics<small>Cranfield University</small></div><div class="lane"><span class="bar" style="left:82.14%;width:14.29%"></span></div></div>
+          <div class="trow"><div class="tl">MSc Aeronautical Engineering<small>Universidad Politécnica de Madrid</small></div><div class="lane"><span class="bar" style="left:66.67%;width:29.76%"></span></div></div>
+          <div class="trow"><div class="tl">Structural Analysis Intern<small>Airbus · Xplorer programme</small></div><div class="lane"><span class="bar work" style="left:58.33%;width:7.14%"></span></div></div>
+          <div class="trow"><div class="tl">Dean<small>Colegio Mayor Pío XII</small></div><div class="lane"><span class="bar other" style="left:38.1%;width:13.1%"></span></div></div>
+          <div class="trow"><div class="tl">BSc Aerospace Engineering<small>Universidad Politécnica de Madrid</small></div><div class="lane"><span class="bar" style="left:9.52%;width:55.95%"></span></div></div>
+          <div class="legend"><span><i class="w"></i>Professional</span><span><i></i>Academic</span><span><i class="o"></i>Additional</span></div>
+        </div>
+      </div>
+
+      <div class="entries">
+        <article class="entry">
+          <div class="when">Aug 2026 – present<br>Getafe, Madrid<div class="tag pro">Professional</div></div>
+          <div class="body">
+            <div>
+              <h3>Flight Control System Engineer</h3>
+              <div class="org"><b>Akkodis for Airbus Defence and Space</b> · Flight Control Systems, Manage Flight &amp; Autopilot</div>
+            </div>
+            <ul>
+              <li>Requirement-based verification and validation of MATLAB/Simulink models for Flight Control System (FCS), Flight Management System (FMS) and Independent Monitoring Flight Termination Unit (IMFTU) functions in military and UAS programmes (ATA 22/27).</li>
+              <li>Design and run tests in Simulink Test Manager and dedicated test harnesses, turning DOORS requirements into test inputs, expected results, pass/fail criteria and test sequences.</li>
+              <li>Investigate failed tests and requirement discrepancies, and support model corrections when verification finds implementation errors.</li>
+              <li>Work in a configuration-controlled environment with Git and Bitbucket branches, alongside Airbus Defence and Space engineers.</li>
+            </ul>
+            <div class="chips"><span class="chip">MATLAB</span><span class="chip">Simulink</span><span class="chip">Simulink Test Manager</span><span class="chip">DOORS</span><span class="chip">Git · Bitbucket</span></div>
+          </div>
+        </article>
+
+        <article class="entry">
+          <div class="when">Feb 2024 – Jul 2024<br>Madrid<div class="tag pro">Professional</div></div>
+          <div class="body">
+            <div>
+              <h3>Structural Analysis Intern</h3>
+              <div class="org"><b>Airbus</b> · Xplorer programme, Structures and Structural Analysis</div>
+            </div>
+            <ul>
+              <li>Developed and extended an analytical structural-analysis method in Fortran.</li>
+              <li>Verified the method against Nastran finite-element analysis, reaching 98% accuracy against reference results.</li>
+              <li>Automated model creation with TCL scripts, saving more than two minutes of setup per simulation.</li>
+            </ul>
+            <p class="honour">The internship became my BSc thesis, awarded Matrícula de Honor, the highest distinction in the Spanish grading system. Airbus then selected me for its Early Talent pool.</p>
+            <div class="chips"><span class="chip">Fortran</span><span class="chip">Nastran</span><span class="chip">TCL</span><span class="chip">HyperWorks</span><span class="chip">Patran</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== EDUCATION ===================== -->
+  <section class="block" id="education">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">UPM–Cranfield double degree</div>
+        <h2>Education</h2>
+      </div>
+      <div class="entries">
+        <article class="entry">
+          <div class="when">Oct 2025 – Sep 2026<br>Cranfield, UK<div class="tag acad">Academic</div></div>
+          <div class="body">
+            <div>
+              <h3>MSc in Aerospace Dynamics</h3>
+              <div class="org"><b>Cranfield University</b> · Flight Dynamics and Control specialisation</div>
+            </div>
+            <p>Overall average <b>82.8/100</b>: taught modules 83.4/100 and Individual Research Project 82/100.* Final year of the UPM–Cranfield double-degree pathway.</p>
+            <div class="chips">
+              <span class="chip">Flight Dynamics Principles</span><span class="chip">Flying Qualities and Flight Control</span><span class="chip">Air-Vehicle Modelling and Simulation</span><span class="chip">Aircraft System Identification</span><span class="chip">Control Systems</span><span class="chip">Multivariable Control Systems</span><span class="chip">Flight Experimental Methods</span><span class="chip">Experimental Aerodynamics</span><span class="chip">Rotorcraft Performance, Stability and Control</span>
+            </div>
+          </div>
+        </article>
+        <article class="entry">
+          <div class="when">Sep 2024 – Sep 2026<br>Madrid<div class="tag acad">Academic</div></div>
+          <div class="body">
+            <div>
+              <h3>MSc in Aeronautical Engineering</h3>
+              <div class="org"><b>Universidad Politécnica de Madrid</b> · Máster Universitario en Ingeniería Aeronáutica</div>
+            </div>
+            <p>Professionally qualifying master's degree, with the second year completed at Cranfield. First-year average 7.5/10.</p>
+            <div class="chips"><span class="chip">Flight Dynamics</span><span class="chip">Advanced Aeroelasticity</span><span class="chip">Optimisation &amp; Control Techniques</span><span class="chip">Air Navigation Systems</span><span class="chip">Aerospace Electronic Systems</span><span class="chip">Advanced Structures</span><span class="chip">Space Vehicle Design &amp; Certification</span></div>
+          </div>
+        </article>
+        <article class="entry">
+          <div class="when">Sep 2020 – Jul 2024<br>Madrid<div class="tag acad">Academic</div></div>
+          <div class="body">
+            <div>
+              <h3>BSc in Aerospace Engineering</h3>
+              <div class="org"><b>Universidad Politécnica de Madrid</b> · Aerospace Vehicles specialisation</div>
+            </div>
+            <p>GPA 7.5/10. Matrícula de Honor in the BSc thesis and in Computer Science.</p>
+            <div class="chips"><span class="chip">Flight Mechanics</span><span class="chip">Fixed-Wing Aircraft</span><span class="chip">Rotary-Wing Aircraft</span><span class="chip">Missiles</span><span class="chip">Automatic Control</span><span class="chip">Aerospace Electronic Systems</span><span class="chip">CAD &amp; Engineering Design</span></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== RESEARCH ===================== -->
+  <section class="block" id="research">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">MSc research project</div>
+        <h2>Research</h2>
+      </div>
+
+      <article class="feature">
+        <div class="feature-top">
+          <div class="feature-text">
+            <span class="pub">Results selected for publication · manuscript in preparation</span>
+            <h3>Gust load alleviation for a flexible blended-wing-body aircraft</h3>
+            <div class="meta">Individual Research Project · Cranfield University · 2026<br>Supervisor: Dr Mushfiqul Alam · Mark 82/100</div>
+            <p>A single fixed feedforward command alleviates some gusts well and others badly. I developed a gust-conditioned feedforward controller whose elevator and spoiler commands adapt to the gust encounter and to the aircraft's fuel state, and validated it in nonlinear simulation.</p>
+            <p>An offline optimiser acts as the teacher and a small neural network as the student: the network learns the optimal command map, is frozen, and is then tested against baselines in the nonlinear Simulink model with the feedback loop both open and closed.</p>
+            <div class="chips"><span class="chip">MATLAB</span><span class="chip">Simulink</span><span class="chip">Optimization Toolbox · fmincon</span><span class="chip">Deep Learning Toolbox</span></div>
+          </div>
+          <div class="feature-fig">
+            <figure>
+              <button class="fig" type="button" data-cap="Architecture of the deployed student network: three scheduling inputs, one hidden layer of 32 neurons with hyperbolic tangent activation, and 82 command-node outputs (41 elevator and 41 spoiler nodes)."><img src="img/irp-network.webp" width="1347" height="669" alt="Neural network diagram with three inputs, 32 hidden neurons and command node outputs"></button>
+              <figcaption><b>Student network.</b> Three scheduling inputs available before the load peak (gust time scale, gust gradient length, fuel fraction) map to the elevator and spoiler command histories.</figcaption>
+            </figure>
+          </div>
+        </div>
+        <ol class="steps">
+          <li><b>Offline constrained optimiser</b><span>fmincon generates elevator and spoiler command histories for each gust and fuel case, with a channel-normalised, weighted peak objective.</span></li>
+          <li><b>Training labels</b><span>Optimal commands over fuel states and gust lengths are solved once, offline.</span></li>
+          <li><b>Supervised network</b><span>A small network learns the command map from three scheduling inputs.</span></li>
+          <li><b>Command laws</b><span>The network's outputs become bounded elevator and spoiler histories.</span></li>
+          <li><b>Linear design evaluation</b><span>A Pareto family is compared and the operating point is selected and frozen.</span></li>
+          <li><b>Nonlinear validation</b><span>The frozen controller is tested in nonlinear Simulink with the feedback loop open and closed.</span></li>
+        </ol>
+        <div class="feature-gallery">
+          <figure>
+            <button class="fig" type="button" data-cap="Controller development and validation workflow, from the offline optimiser to nonlinear validation."><img src="img/irp-workflow.webp" width="1400" height="465" alt="Six-step workflow diagram"></button>
+            <figcaption><b>Workflow.</b> Teacher, student, freeze, validate.</figcaption>
+          </figure>
+          <figure>
+            <button class="fig" type="button" data-cap="The ten discrete vertical gust inputs of the base grid, from the shortest to the longest gust gradient length."><img src="img/irp-gusts.webp" width="1400" height="681" alt="Ten discrete gust velocity profiles of increasing length"></button>
+            <figcaption><b>Gust grid.</b> Ten discrete vertical gusts of increasing length.</figcaption>
+          </figure>
+          <figure>
+            <button class="fig" type="button" data-cap="Learned feedforward elevator and spoiler command histories at one fuel state for a short, a medium and a long gust. Deflection values removed while the results are prepared for publication."><img src="img/irp-commands.webp" width="1400" height="916" alt="Elevator and spoiler command histories for three gust lengths"></button>
+            <figcaption><b>Learned commands.</b> Deflection values removed until publication.</figcaption>
+          </figure>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ===================== PROJECTS ===================== -->
+  <section class="block" id="projects">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Cranfield coursework · 2025–26</div>
+        <h2>Projects</h2>
+        <p>Assessed projects from the MSc. Each one starts from an aircraft model or real flight data and ends with a verified result. Open a project for the method and more figures, and click any figure to enlarge it.</p>
+      </div>
+
+      <div class="filters" role="group" aria-label="Filter projects">
+        <button type="button" data-f="all" aria-pressed="true">All</button>
+        <button type="button" data-f="control" aria-pressed="false">Flight control</button>
+        <button type="button" data-f="model" aria-pressed="false">Modelling &amp; simulation</button>
+        <button type="button" data-f="test" aria-pressed="false">Flight test &amp; experiments</button>
+      </div>
+
+      <div class="projects">
+
+        <article class="proj" data-cat="control">
+          <figure>
+            <button class="fig" type="button" data-cap="Gibson phase-rate criterion with the Case 6 design point plotted on the Level 1–3 boundaries."><img src="img/fqfc-gibson.webp" width="1400" height="904" alt="Gibson average phase rate chart with Level 1, 2 and 3 regions and the design point"></button>
+            <figcaption><b>PIO assessment.</b> Design point on the Gibson phase-rate criterion.</figcaption>
+          </figure>
+          <div class="p-text">
+            <div class="tags"><span class="tag acad">Flying Qualities &amp; Flight Control</span></div>
+            <h3>Gain-scheduled pitch CSAS for the Aero L-159 ALCA</h3>
+            <p class="sum">A longitudinal command and stability augmentation system designed over four flight conditions of increasing dynamic pressure, then checked against handling-qualities criteria.</p>
+            <details>
+              <summary>Method and figures</summary>
+              <div class="more">
+                <ul>
+                  <li>Open-loop analysis of the actuator-augmented longitudinal model in each flight condition.</li>
+                  <li>Pitch-rate feedback gain chosen by root locus and scheduled linearly with dynamic pressure.</li>
+                  <li>Reduced-order equivalent model checked against the full-order model in time and frequency.</li>
+                  <li>Command pre-filter designed with the dropback criterion for pitch tracking.</li>
+                  <li>Stick-force-per-g gearing against the Level 1 envelope, and PIO assessment with the bandwidth and Gibson criteria.</li>
+                </ul>
+                <div class="thumbs">
+                  <figure><button class="fig" type="button" data-cap="Root locus of the actuator-augmented pitch-rate response for the four flight conditions, short-period region."><img src="img/fqfc-rlocus.webp" width="1400" height="997" alt="Four root locus plots" loading="lazy"></button><figcaption>Root locus, four flight conditions.</figcaption></figure>
+                  <figure><button class="fig" type="button" data-cap="Pitch-attitude response with and without the command pre-filter for the four flight conditions."><img src="img/fqfc-prefilter.webp" width="1400" height="982" alt="Pitch attitude responses with and without pre-filter" loading="lazy"></button><figcaption>Effect of the command pre-filter.</figcaption></figure>
+                  <figure><button class="fig" type="button" data-cap="Level 1 stick-force-per-g envelope and the achieved design points for the four flight conditions."><img src="img/fqfc-fsn.webp" width="1400" height="1119" alt="Stick force per g envelope with four design points" loading="lazy"></button><figcaption>Stick force per g, Level 1 envelope.</figcaption></figure>
+                  <figure><button class="fig" type="button" data-cap="Pitch-rate feedback gain schedule as a function of dynamic pressure."><img src="img/fqfc-kq.webp" width="1400" height="1086" alt="Gain schedule versus dynamic pressure" loading="lazy"></button><figcaption>Kq schedule against dynamic pressure.</figcaption></figure>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="proj" data-cat="model">
+          <figure>
+            <button class="fig" type="button" data-cap="Short-period verification: pitch-rate response of the linear model, the nonlinear model and the Saab 340B flight test."><img src="img/avms-sppo.webp" width="700" height="525" alt="Pitch rate time histories comparing linear, nonlinear and flight test"></button>
+            <figcaption><b>Short period.</b> Linear vs nonlinear vs flight test, pitch rate.</figcaption>
+          </figure>
+          <div class="p-text">
+            <div class="tags"><span class="tag acad">Air-Vehicle Modelling &amp; Simulation</span></div>
+            <h3>Nonlinear 6-DoF Saab 340B simulation, checked against flight test</h3>
+            <p class="sum">I completed a nonlinear six-degree-of-freedom Simulink model of the Saab 340B, trimmed and linearised it, and compared linear, nonlinear and flight-test responses for every dynamic mode.</p>
+            <details>
+              <summary>Method and figures</summary>
+              <div class="more">
+                <ul>
+                  <li>Implemented the navigation block from scratch and verified the trim condition (constant velocities, rates, angles, airspeed and altitude).</li>
+                  <li>Built a control-input injection architecture to replay recorded flight-test inputs.</li>
+                  <li>Linearised the model, decoupled the longitudinal and lateral-directional state matrices and ran modal analysis.</li>
+                  <li>Validated short period, phugoid, Dutch roll, roll and spiral modes against flight data, using time-ratio and logarithmic-decrement analysis.</li>
+                  <li>Tracked eigenvalue migration across the airspeed range and studied open-loop Bode responses.</li>
+                </ul>
+                <div class="thumbs">
+                  <figure><button class="fig" type="button" data-cap="Phugoid validation, airspeed: linear model, nonlinear model and flight test. Over the first cycle the linear model matches the flight test in phase and period, and captures the first airspeed peak within a few m/s."><img src="img/avms-phugoid.webp" width="700" height="525" alt="True airspeed time histories for the phugoid comparing linear, nonlinear and flight test" loading="lazy"></button><figcaption>Phugoid, airspeed: phase and period match the flight test.</figcaption></figure>
+                  <figure><button class="fig" type="button" data-cap="Longitudinal eigenvalue migration with airspeed at 7000 ft."><img src="img/avms-eigen.webp" width="700" height="525" alt="Eigenvalue chart across airspeeds" loading="lazy"></button><figcaption>Eigenvalue migration with airspeed.</figcaption></figure>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="proj" data-cat="test model">
+          <figure>
+            <button class="fig" type="button" data-cap="Output-Error model trained on the Dutch-roll manoeuvre and replayed on the same dataset: measured and model responses."><img src="img/fasi-oe-dutchroll.webp" width="1400" height="1120" alt="Five channels of measured versus model response for a Dutch roll"></button>
+            <figcaption><b>Output-Error replay.</b> Dutch roll, measured vs identified model.</figcaption>
+          </figure>
+          <div class="p-text">
+            <div class="tags"><span class="tag acad">Aircraft System Identification</span></div>
+            <h3>System identification of the Saab 340B from flight data</h3>
+            <p class="sum">Longitudinal and lateral-directional models of the Saab 340B identified from 50 Hz flight-test data, from data compatibility checks through Equation-Error and Output-Error estimation to validation on independent manoeuvres.</p>
+            <details>
+              <summary>Method and figures</summary>
+              <div class="more">
+                <ul>
+                  <li>Kinematic consistency checks with sensor bias and scale-factor correction for every manoeuvre.</li>
+                  <li>Transfer-function fits in the frequency and time domains.</li>
+                  <li>Equation-Error regression of the non-dimensional aerodynamic coefficients.</li>
+                  <li>3-DoF Output-Error models with residual analysis.</li>
+                  <li>Validation on manoeuvres not used for identification (Dutch roll to roll mode, Short Period 2 to Short Period 1).</li>
+                </ul>
+                <div class="thumbs">
+                  <figure><button class="fig" type="button" data-cap="Equation-Error regression fit for the side-force coefficient, with residuals."><img src="img/fasi-ee-cy.webp" width="1400" height="1129" alt="Regression fit and residuals" loading="lazy"></button><figcaption>Equation-Error fit for C<sub>Y</sub>.</figcaption></figure>
+                  <figure><button class="fig" type="button" data-cap="Independent validation of the longitudinal 3-DoF Output-Error model on Short Period 1."><img src="img/fasi-validation.webp" width="1400" height="1128" alt="Validation time histories" loading="lazy"></button><figcaption>Independent validation, Short Period 1.</figcaption></figure>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="proj" data-cat="control">
+          <figure>
+            <button class="fig" type="button" data-cap="Singular values of the Bell 205 helicopter plant."><img src="img/mvc-sv.webp" width="1400" height="1127" alt="Singular value plot"></button>
+            <figcaption><b>Bell 205 plant.</b> Singular values before the H∞ design.</figcaption>
+          </figure>
+          <div class="p-text">
+            <div class="tags"><span class="tag acad">Multivariable Control Systems</span></div>
+            <h3>Multivariable and robust control: LQR, LQG, H∞ and μ</h3>
+            <p class="sum">State-space and robust control on aircraft and helicopter models: modal analysis, LQR and LQG for a wing-leveller, an H∞ mixed-sensitivity design for a Bell 205 helicopter, and μ-analysis of robustness to uncertainty.</p>
+            <details>
+              <summary>Method and figures</summary>
+              <div class="more">
+                <ul>
+                  <li>Modal analysis and mode isolation from the state matrix.</li>
+                  <li>LQR design with pole migration as the control weighting changes, and reference precompensation for a wing-leveller.</li>
+                  <li>LQG design with estimator tuning through the noise covariances.</li>
+                  <li>H∞ mixed-sensitivity (S/KS) design for the Bell 205, with weight relaxation for an improved design.</li>
+                  <li>μ upper and lower bounds for unstructured and structured uncertainty.</li>
+                </ul>
+                <div class="thumbs">
+                  <figure><button class="fig" type="button" data-cap="Open-loop and LQR closed-loop poles as the control weighting R is reduced."><img src="img/mvc-lqr.webp" width="1400" height="1159" alt="Pole map for LQR designs" loading="lazy"></button><figcaption>LQR pole migration.</figcaption></figure>
+                  <figure><button class="fig" type="button" data-cap="LQG bank-angle responses for successive estimator iterations."><img src="img/mvc-lqg.webp" width="1400" height="1125" alt="LQG bank angle responses" loading="lazy"></button><figcaption>LQG estimator tuning.</figcaption></figure>
+                  <figure><button class="fig" type="button" data-cap="μ upper and lower bounds for unstructured multiplicative input uncertainty."><img src="img/mvc-mu.webp" width="1400" height="675" alt="Mu bounds versus frequency" loading="lazy"></button><figcaption>μ-analysis bounds.</figcaption></figure>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="proj" data-cat="test">
+          <figure>
+            <button class="fig" type="button" data-cap="Dutch roll flight-test record with curve fit, Saab 340B."><img src="img/fem-dutchroll.webp" width="1400" height="764" alt="Dutch roll time history with fit"></button>
+            <figcaption><b>Dutch roll.</b> Flight-test record and fit.</figcaption>
+          </figure>
+          <div class="p-text">
+            <div class="tags"><span class="tag acad">Flight Experimental Methods</span><span class="tag">Team project</span></div>
+            <h3>Flight-test analysis: lateral-directional stability of the Saab 340B</h3>
+            <p class="sum">Analysis of flight-test data from Cranfield's flying laboratory. My part covered lateral and directional static stability, the Dutch roll and the roll mode, with measured damping and time constants compared against theoretical predictions.</p>
+            <details>
+              <summary>Method and figures</summary>
+              <div class="more">
+                <p class="team">Team report (five authors). The work below is the part I was responsible for.</p>
+                <ul>
+                  <li>Steady heading sideslip analysis: rudder and aileron gradients against sideslip, effect of speed and configuration, and the CS-25.177 requirement.</li>
+                  <li>Dutch roll: logarithmic-decrement analysis of rudder doublets between about 140 and 190 KIAS, with the damping product compared to theory.</li>
+                  <li>Roll mode: time-constant estimation from aileron inputs, compared to theory.</li>
+                </ul>
+                <div class="thumbs">
+                  <figure><button class="fig" type="button" data-cap="Lateral stability: aileron deflection against lateral equivalent velocity for all test points."><img src="img/fem-latstab.webp" width="1400" height="746" alt="Aileron deflection versus sideslip lines" loading="lazy"></button><figcaption>Static lateral stability gradients.</figcaption></figure>
+                  <figure><button class="fig" type="button" data-cap="Dutch roll damping product: flight test against theory."><img src="img/fem-damping.webp" width="1146" height="749" alt="Damping product comparison" loading="lazy"></button><figcaption>Dutch roll damping, test vs theory.</figcaption></figure>
+                  <figure><button class="fig" type="button" data-cap="Roll mode time constant: flight test against theory."><img src="img/fem-roll.webp" width="1194" height="856" alt="Roll time constant comparison" loading="lazy"></button><figcaption>Roll time constant, test vs theory.</figcaption></figure>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="proj" data-cat="model control">
+          <figure>
+            <button class="fig" type="button" data-cap="Pitch damper designed by root locus (Kq = 0.091). Left: the short-period poles move onto the ζ = 0.7 line (ζ 0.55 → 0.70) while the phugoid barely changes. Right: pitch rate after a 1° elevator pulse, with a smaller overshoot and no second oscillation. Regenerated from the state-space model and gain in my report."><img src="img/fdp-damper.webp" width="1600" height="698" alt="Short-period poles before and after the pitch damper, and pitch-rate response to an elevator pulse with and without the damper"></button>
+            <figcaption><b>Pitch damper.</b> Short-period damping from 0.55 to 0.70.</figcaption>
+          </figure>
+          <div class="p-text">
+            <div class="tags"><span class="tag acad">Flight Dynamics Principles</span></div>
+            <h3>From datapack to flying qualities: a twin-turboprop model</h3>
+            <p class="sum">A complete linear flight dynamics model built from an aircraft datapack, assessed against Def Stan 00-970 flying qualities and finished with a pitch damper designed by root locus.</p>
+            <details>
+              <summary>Method</summary>
+              <div class="more">
+                <ul>
+                  <li>Mass properties by the discrete element method.</li>
+                  <li>Nonlinear 6-DoF equations of motion, small-perturbation linearisation and longitudinal/lateral decoupling.</li>
+                  <li>Trim, stability and control derivatives (including propeller effects), state-space matrices and transfer functions.</li>
+                  <li>Modal characterisation against Def Stan 00-970 Category B, then a pitch damper by reduced-order root locus.</li>
+                </ul>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="proj" data-cat="model">
+          <figure>
+            <button class="fig" type="button" data-cap="Mission time histories of total thrust, drag and power for the V-23 SkySpark eVTOL concept."><img src="img/rot-mission.webp" width="1400" height="979" alt="Thrust, drag and power over the mission"></button>
+            <figcaption><b>Mission profile.</b> Thrust, drag and power by phase.</figcaption>
+          </figure>
+          <div class="p-text">
+            <div class="tags"><span class="tag acad">Rotorcraft Performance, Stability &amp; Control</span></div>
+            <h3>Mission performance of a tilt-rotor eVTOL concept</h3>
+            <p class="sum">Performance and energy analysis of the V-23 SkySpark, an eight-propeller tilt-rotor eVTOL concept, across a seven-phase mission from vertical take-off to landing.</p>
+            <details>
+              <summary>Method and figures</summary>
+              <div class="more">
+                <ul>
+                  <li>Thrust, drag and power in each phase, with momentum theory for hover and climb and a hybrid model for transition.</li>
+                  <li>Battery sizing from integrated mission energy, including a 45-minute reserve.</li>
+                  <li>Induced velocity and power in take-off, hover and early transition.</li>
+                  <li>Sensitivity of battery mass to cruise altitude, cruise speed and payload, and a comparison with current eVTOL programmes.</li>
+                </ul>
+                <div class="thumbs">
+                  <figure><button class="fig" type="button" data-cap="Cumulative energy consumption through the mission, including the reserve."><img src="img/rot-energy.webp" width="1400" height="675" alt="Cumulative energy over mission time" loading="lazy"></button><figcaption>Cumulative mission energy.</figcaption></figure>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="proj" data-cat="test">
+          <figure>
+            <button class="fig" type="button" data-cap="Oil-flow visualisation on the 76°/40° double-delta wing from 6° to 32° angle of attack."><img src="img/exa-oilflow.webp" width="991" height="528" alt="Six photographs of oil-flow patterns on a double-delta wing at increasing angle of attack"></button>
+            <figcaption><b>Oil-flow visualisation.</b> Vortex system from 6° to 32° AoA.</figcaption>
+          </figure>
+          <div class="p-text">
+            <div class="tags"><span class="tag acad">Experimental Aerodynamics</span><span class="tag">Team project</span></div>
+            <h3>Wind-tunnel testing: aerofoil pressures and a double-delta wing</h3>
+            <p class="sum">Low-speed wind-tunnel labs: tunnel and transducer calibration, pressure distributions and integrated loads on a NACA 23012 aerofoil, and force-balance tests with oil-flow visualisation of the vortex system over a 76°/40° double-delta wing.</p>
+            <details>
+              <summary>Method and figures</summary>
+              <div class="more">
+                <ul>
+                  <li>Calibration of the pressure transducer and of the tunnel dynamic pressure against a Pitot-static probe.</li>
+                  <li>NACA 23012 with 39 pressure tappings: corrected pressure coefficients and lift and drag by integration up to stall.</li>
+                  <li>Double-delta wing on a six-component balance with tare corrections, repeat runs and oil-flow visualisation linking vortex breakdown to the lift curve.</li>
+                  <li>Individual task: proposed improvements to a 1:14-scale Saab 340B wind-tunnel test.</li>
+                </ul>
+                <div class="thumbs">
+                  <figure><button class="fig" type="button" data-cap="Double-delta wing: lift, drag and pitching-moment coefficients against angle of attack, with reference data."><img src="img/exa-coeffs.webp" width="1400" height="450" alt="CL, CD and CM against angle of attack" loading="lazy"></button><figcaption>Force and moment coefficients.</figcaption></figure>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+        <article class="proj" data-cat="control">
+          <figure>
+            <button class="fig" type="button" data-cap="Region of stable proportional and derivative gains for the PD design."><img src="img/cs-region.webp" width="1400" height="665" alt="Stability region in the Kp Kd plane"></button>
+            <figcaption><b>PD design.</b> Stable region of Kp and Kd.</figcaption>
+          </figure>
+          <div class="p-text">
+            <div class="tags"><span class="tag acad">Control Systems</span></div>
+            <h3>Classical control design for a SISO plant</h3>
+            <p class="sum">Root locus, Routh–Hurwitz and frequency-domain design, robustness to plant uncertainty, and PID tuning compared across hand tuning, a genetic algorithm and fmincon.</p>
+            <details>
+              <summary>Method and figures</summary>
+              <div class="more">
+                <ul>
+                  <li>Proportional design by root locus within a damping and settling-time region of the s-plane.</li>
+                  <li>Bode, Nyquist and Nichols analysis of the compensated loop, bandwidth and sensitivity.</li>
+                  <li>PD and state-feedback designs, including disturbance rejection.</li>
+                  <li>Multiplicative uncertainty and the small-gain theorem.</li>
+                  <li>PID tuning by Ziegler–Nichols, genetic algorithm and fmincon, plus a derivative-on-feedback and pre-filter redesign in SISO Tool.</li>
+                </ul>
+                <div class="thumbs">
+                  <figure><button class="fig" type="button" data-cap="Step response of the final PID designs."><img src="img/cs-pid.webp" width="1150" height="768" alt="PID step response" loading="lazy"></button><figcaption>Optimised PID step response.</figcaption></figure>
+                </div>
+              </div>
+            </details>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SELF-STUDY + LAB ===================== -->
+  <section class="block" id="study">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Beyond the syllabus</div>
+        <h2>Self-study</h2>
+        <p>I spent the second year of the UPM master's at Cranfield, so I didn't take these UPM electives. I worked through their material on my own.</p>
+      </div>
+      <div class="duo">
+        <article class="panel">
+          <div class="tags"><span class="tag self">Self-study</span><span class="tag">UPM MUIA elective</span></div>
+          <h3>Flight Control Systems</h3>
+          <ul>
+            <li>Flight control system architecture and aircraft flying qualities.</li>
+            <li>Modelling of the plant, actuators, sensors and the human pilot.</li>
+            <li>FCS design criteria, static and dynamic stability augmentation, autopilots and practical implementation.</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <div class="tags"><span class="tag self">Self-study</span><span class="tag">UPM MUIA elective</span></div>
+          <h3>GNC and Missile Trajectory Optimisation</h3>
+          <ul>
+            <li>Proportional and augmented proportional navigation, zero-effort miss and optimal-control guidance.</li>
+            <li>Autopilot lag, the adjoint method and miss-distance analysis.</li>
+            <li>Noise and Kalman filtering fundamentals.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="lab" style="margin-top:18px">
+        <div style="display:grid;gap:12px">
+          <div class="eyebrow">Personal project · in development</div>
+          <h3>Flight Dynamics Lab</h3>
+          <p>An interactive lab for exploring how aircraft fly and how their control systems work, written in Python and built on public aircraft data from NASA reports. Each module will explain its theory and be checked against analytical results and textbook examples.</p>
+        </div>
+        <ul class="mods" aria-label="Planned modules">
+          <li>Dynamic modes explorer <span>planned</span></li>
+          <li>Stability augmentation design <span>planned</span></li>
+          <li>Multivariable control <span>planned</span></li>
+          <li>System identification <span>planned</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SKILLS ===================== -->
+  <section class="block" id="skills">
+    <div class="wrap">
+      <div class="sec-head">
+        <div class="eyebrow">Toolkit</div>
+        <h2>Skills</h2>
+      </div>
+      <div class="skills">
+        <div class="skill"><h3>Flight dynamics</h3><div class="chips"><span class="chip">Nonlinear 6-DoF models</span><span class="chip">Trim &amp; linearisation</span><span class="chip">State-space models</span><span class="chip">Modal analysis</span><span class="chip">Flying qualities</span></div></div>
+        <div class="skill"><h3>Flight control</h3><div class="chips"><span class="chip">SISO &amp; MIMO control</span><span class="chip">q-feedback</span><span class="chip">Gain scheduling</span><span class="chip">LQR / LQG</span><span class="chip">Robustness analysis</span></div></div>
+        <div class="skill"><h3>Verification &amp; validation</h3><div class="chips"><span class="chip">Simulink Test Manager</span><span class="chip">Test harnesses</span><span class="chip">Requirement-based testing</span><span class="chip">DOORS</span><span class="chip">Git · Bitbucket</span></div></div>
+        <div class="skill"><h3>Flight test &amp; system ID</h3><div class="chips"><span class="chip">Kinematic consistency</span><span class="chip">Sensor error correction</span><span class="chip">Equation-Error</span><span class="chip">Output-Error</span><span class="chip">Model validation</span></div></div>
+        <div class="skill"><h3>Programming</h3><div class="chips"><span class="chip">MATLAB</span><span class="chip">Simulink</span><span class="chip">Python</span><span class="chip">Fortran</span><span class="chip">TCL</span><span class="chip">C++ (basic)</span></div></div>
+        <div class="skill"><h3>Engineering software</h3><div class="chips"><span class="chip">Nastran</span><span class="chip">HyperWorks</span><span class="chip">Patran</span><span class="chip">CATIA</span><span class="chip">Tecplot</span></div></div>
+      </div>
+
+      <div class="langs" aria-label="Languages">
+        <div class="lang"><b>Spanish</b><div class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><span class="mono">Native</span></div>
+        <div class="lang"><b>Basque</b><div class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div><span class="mono">Native</span></div>
+        <div class="lang"><b>English</b><div class="meter" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div><span class="mono">C1</span></div>
+        <div class="lang"><b>French</b><div class="meter" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i><i></i></div><span class="mono">A1</span></div>
+      </div>
+
+      <div class="entries" style="margin-top:34px">
+        <article class="entry">
+          <div class="when">Sep 2022 – Jul 2023<br>Madrid<div class="tag">Additional</div></div>
+          <div class="body">
+            <div>
+              <h3>Dean</h3>
+              <div class="org"><b>Colegio Mayor Pío XII</b> · Fundación Pablo VI</div>
+            </div>
+            <p>Coordinated day-to-day residential activities for about 100 students and helped organise events for more than 300 attendees.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Contact</div>
+      <h2>Let's talk flight dynamics and control.</h2>
+      <p>I'm based in Madrid. Reach me by email, phone or LinkedIn, or download my CV.</p>
+    </div>
+    <div class="links">
+      <span class="email-chip"><span>gestevas@gmail.com</span><button type="button" class="copy" data-copy="gestevas@gmail.com">Copy</button></span>
+      <span class="email-chip"><span>+34 671 807 689</span><button type="button" class="copy" data-copy="+34671807689">Copy</button></span>
+      <div class="actions" style="margin-top:4px">
+        <a class="btn" href="mailto:gestevas@gmail.com">Email me</a>
+        <a class="btn" href="tel:+34671807689">Call</a>
+        <a class="btn" href="cv/Gonzalo_Estevas-Guilmain_CV.pdf" target="_blank" rel="noopener">CV (PDF)</a>
+        <a class="btn primary" href="https://www.linkedin.com/in/gonzalo-estevas" target="_blank" rel="noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Gonzalo Estevas-Guilmain Morán</span>
+    <span>* Cranfield marks are provisional until ratified by the Board of Examiners. Figures come from my own assessed coursework; team projects are marked as such.</span>
+  </div>
+</footer>
+
+<dialog class="lb" id="lb" aria-label="Enlarged figure">
+  <div class="lb-inner">
+    <button type="button" class="lb-close" id="lb-close">Close</button>
+    <img id="lb-img" alt="">
+    <p class="lb-cap" id="lb-cap"></p>
+  </div>
+</dialog>
+
+<script>
+(() => {
+  /* ---------- copy contact details ---------- */
+  function copy(btn) {
+    const text = btn.dataset.copy;
+    const done = () => { btn.textContent = 'Copied'; setTimeout(() => btn.textContent = 'Copy', 1600); };
+    const fallback = () => {
+      const r = document.createRange(); r.selectNodeContents(btn.previousElementSibling);
+      const sel = window.getSelection(); sel.removeAllRanges(); sel.addRange(r);
+      btn.textContent = 'Selected'; setTimeout(() => btn.textContent = 'Copy', 1600);
+    };
+    try { navigator.clipboard.writeText(text).then(done, fallback); } catch (e) { fallback(); }
+  }
+  document.querySelectorAll('button.copy').forEach(b => b.addEventListener('click', e => copy(e.currentTarget)));
+
+  /* ---------- lightbox ---------- */
+  const lb = document.getElementById('lb'), lbImg = document.getElementById('lb-img'), lbCap = document.getElementById('lb-cap');
+  document.querySelectorAll('button.fig').forEach(b => b.addEventListener('click', () => {
+    const img = b.querySelector('img'); lbImg.src = img.src; lbImg.alt = img.alt; lbCap.textContent = b.dataset.cap || '';
+    if (typeof lb.showModal === 'function') lb.showModal(); else lb.setAttribute('open', '');
+  }));
+  document.getElementById('lb-close').addEventListener('click', () => lb.close());
+  lb.addEventListener('click', e => { if (e.target === lb) lb.close(); });
+
+  /* ---------- project filter ---------- */
+  const fbtns = document.querySelectorAll('.filters button');
+  fbtns.forEach(b => b.addEventListener('click', () => {
+    fbtns.forEach(x => x.setAttribute('aria-pressed', String(x === b)));
+    const f = b.dataset.f;
+    document.querySelectorAll('.proj').forEach(p => { p.hidden = !(f === 'all' || p.dataset.cat.split(' ').includes(f)); });
+  }));
+
+  /* ---------- s-plane ---------- */
+  const cv = document.getElementById('splane'); const ctx = cv.getContext('2d');
+  // mode definitions: [wn, zeta] for oscillatory, [pole] for real
+  const OPEN = { sp: [3.0, 0.35], dr: [1.4, 0.12], ph: [0.12, 0.06], roll: -2.0, spiral: -0.012 };
+  const AUG  = { sp: [3.2, 0.70], dr: [1.4, 0.40], ph: [0.12, 0.06], roll: -2.0, spiral: -0.012 };
+  let cur = JSON.parse(JSON.stringify(OPEN)), target = OPEN, anim = null;
+  const R = { x0: -3.4, x1: 0.7, y0: -3.6, y1: 3.6 };
+  const tok = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  function size() {
+    const r = cv.getBoundingClientRect(); const d = Math.min(window.devicePixelRatio || 1, 2);
+    cv.width = Math.round(r.width * d); cv.height = Math.round(r.height * d); ctx.setTransform(d, 0, 0, d, 0, 0);
+    draw();
+  }
+  function draw() {
+    const W = cv.clientWidth, H = cv.clientHeight; if (!W || !H) return;
+    const pad = { l: 34, r: 14, t: 14, b: 26 };
+    const sx = x => pad.l + (x - R.x0) / (R.x1 - R.x0) * (W - pad.l - pad.r);
+    const sy = y => pad.t + (R.y1 - y) / (R.y1 - R.y0) * (H - pad.t - pad.b);
+    const ink = tok('--ink'), ink3 = tok('--ink-3'), grid = tok('--grid'), rule = tok('--rule'), acc = tok('--accent'), data = tok('--data'), surf = tok('--surface');
+    ctx.fillStyle = surf; ctx.fillRect(0, 0, W, H);
+    // stable half-plane tint
+    ctx.fillStyle = grid; ctx.fillRect(sx(R.x0), sy(R.y1), sx(0) - sx(R.x0), sy(R.y0) - sy(R.y1));
+    // natural frequency arcs (clipped to the plot area)
+    ctx.save(); ctx.beginPath(); ctx.rect(sx(R.x0), sy(R.y1), sx(R.x1) - sx(R.x0), sy(R.y0) - sy(R.y1)); ctx.clip();
+    ctx.strokeStyle = rule; ctx.lineWidth = 1; ctx.setLineDash([2, 4]);
+    [1, 2, 3].forEach(w => { ctx.beginPath(); for (let a = Math.PI / 2; a <= 1.5 * Math.PI + 1e-6; a += Math.PI / 90) { const x = w * Math.cos(a), y = w * Math.sin(a); const px = sx(x), py = sy(y); a === Math.PI / 2 ? ctx.moveTo(px, py) : ctx.lineTo(px, py); } ctx.stroke(); });
+    ctx.setLineDash([]);
+    // constant damping rays
+    ctx.font = '500 10px "JetBrains Mono", monospace'; ctx.fillStyle = ink3;
+    [0.2, 0.4, 0.7].forEach(z => {
+      const th = Math.acos(z); const L = 4.4;
+      [1, -1].forEach(sg => { ctx.beginPath(); ctx.strokeStyle = rule; ctx.moveTo(sx(0), sy(0)); ctx.lineTo(sx(-L * Math.cos(th)), sy(sg * L * Math.sin(th))); ctx.stroke(); });
+      const yT = R.y1 - 0.22, xT = -yT * z / Math.sqrt(1 - z * z);
+      if (xT > R.x0 + 0.2) { ctx.textAlign = 'center'; ctx.fillText('ζ ' + z.toFixed(1), sx(xT), sy(yT) + 3); }
+      else { const xL = R.x0 + 0.12, yL = -xL * Math.sqrt(1 - z * z) / z; ctx.textAlign = 'left'; ctx.fillText('ζ ' + z.toFixed(1), sx(xL), sy(yL) + 14); }
+      ctx.textAlign = 'left';
+    });
+    ctx.restore();
+    // axes
+    ctx.strokeStyle = ink3; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(sx(R.x0), sy(0)); ctx.lineTo(sx(R.x1), sy(0)); ctx.moveTo(sx(0), sy(R.y0)); ctx.lineTo(sx(0), sy(R.y1)); ctx.stroke();
+    ctx.fillStyle = ink3; ctx.textAlign = 'center';
+    [-3, -2, -1, 0].forEach(v => ctx.fillText(String(v), sx(v), H - 8));
+    ctx.textAlign = 'right'; [-3, -2, -1, 1, 2, 3].forEach(v => ctx.fillText(v + 'j', pad.l - 6, sy(v) + 3));
+    ctx.textAlign = 'left'; ctx.fillText('Re', sx(R.x1) - 18, sy(0) - 6); ctx.fillText('Im', sx(0) + 5, pad.t + 8);
+    // poles
+    const osc = (k) => { const [w, z] = cur[k]; return [-z * w, w * Math.sqrt(1 - z * z)]; };
+    function xmark(x, y, col, s = 6) { ctx.strokeStyle = col; ctx.lineWidth = 2.2; ctx.beginPath(); ctx.moveTo(sx(x) - s, sy(y) - s); ctx.lineTo(sx(x) + s, sy(y) + s); ctx.moveTo(sx(x) + s, sy(y) - s); ctx.lineTo(sx(x) - s, sy(y) + s); ctx.stroke(); }
+    ctx.font = '600 11px "Archivo", Arial, sans-serif';
+    const [spr, spi] = osc('sp'); xmark(spr, spi, acc); xmark(spr, -spi, acc);
+    ctx.fillStyle = ink; ctx.textAlign = 'left'; ctx.fillText('short period', sx(spr) + 9, sy(spi) - 6);
+    const [drr, dri] = osc('dr'); xmark(drr, dri, data); xmark(drr, -dri, data);
+    ctx.fillText('Dutch roll', sx(drr) + 9, sy(dri) - 6);
+    xmark(cur.roll, 0, data); ctx.textAlign = 'center'; ctx.fillText('roll', sx(cur.roll), sy(0) - 10);
+    const [phr, phi] = osc('ph'); xmark(phr, phi, ink3, 4); xmark(phr, -phi, ink3, 4); xmark(cur.spiral, 0, ink3, 4);
+    ctx.textAlign = 'right'; ctx.fillStyle = ink3; ctx.font = '500 10px "Archivo", Arial, sans-serif'; ctx.fillText('phugoid · spiral', sx(0) - 8, sy(0) + 16);
+  }
+  function setReadout() {
+    document.getElementById('m-sp').textContent = 'ζ ' + cur.sp[1].toFixed(2) + ' · ωn ' + cur.sp[0].toFixed(1);
+    document.getElementById('m-dr').textContent = 'ζ ' + cur.dr[1].toFixed(2) + ' · ωn ' + cur.dr[0].toFixed(1);
+    document.getElementById('m-r').textContent = 'τ ' + (-1 / cur.roll).toFixed(2) + ' s';
+  }
+  function go(to) {
+    const from = JSON.parse(JSON.stringify(cur)); const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const T = reduce ? 0 : 650; const t0 = performance.now(); cancelAnimationFrame(anim);
+    const lerp = (a, b, k) => a + (b - a) * k;
+    function step(now) {
+      const k = T ? Math.min(1, (now - t0) / T) : 1; const e = 1 - Math.pow(1 - k, 3);
+      ['sp', 'dr', 'ph'].forEach(m => { cur[m] = [lerp(from[m][0], to[m][0], e), lerp(from[m][1], to[m][1], e)]; });
+      cur.roll = lerp(from.roll, to.roll, e); cur.spiral = lerp(from.spiral, to.spiral, e);
+      draw(); setReadout(); if (k < 1) anim = requestAnimationFrame(step);
+    }
+    anim = requestAnimationFrame(step);
+  }
+  const swP = document.getElementById('sw-pitch'), swY = document.getElementById('sw-yaw');
+  const tabP = document.getElementById('tab-pitch'), tabY = document.getElementById('tab-yaw');
+  const bdP = document.getElementById('bd-pitch'), bdY = document.getElementById('bd-yaw'), eq = document.getElementById('bd-eq');
+  const st = { pitch: false, yaw: false, axis: 'pitch' };
+  function render() {
+    swP.setAttribute('aria-pressed', String(st.pitch)); swY.setAttribute('aria-pressed', String(st.yaw));
+    tabP.setAttribute('aria-pressed', String(st.axis === 'pitch')); tabY.setAttribute('aria-pressed', String(st.axis === 'yaw'));
+    bdP.toggleAttribute('hidden', st.axis !== 'pitch'); bdY.toggleAttribute('hidden', st.axis !== 'yaw');
+    bdP.classList.toggle('on', st.pitch); bdY.classList.toggle('on', st.yaw);
+    eq.innerHTML = st.axis === 'pitch'
+      ? (st.pitch ? '<span>pitch damper on:</span> q/δc = A·G / (1 + Kq·A·G)' : '<span>pitch damper off:</span> q/δc = A(s)·G(s)')
+      : (st.yaw ? '<span>yaw damper on:</span> r/δp = A·G / (1 + Kr·W·A·G)' : '<span>yaw damper off:</span> r/δp = A(s)·G(s)');
+  }
+  function update() {
+    render();
+    go({ sp: st.pitch ? AUG.sp : OPEN.sp, dr: st.yaw ? AUG.dr : OPEN.dr, ph: OPEN.ph, roll: OPEN.roll, spiral: OPEN.spiral });
+  }
+  swP.addEventListener('click', () => { st.pitch = !st.pitch; st.axis = 'pitch'; update(); });
+  swY.addEventListener('click', () => { st.yaw = !st.yaw; st.axis = 'yaw'; update(); });
+  tabP.addEventListener('click', () => { st.axis = 'pitch'; render(); });
+  tabY.addEventListener('click', () => { st.axis = 'yaw'; render(); });
+  window.addEventListener('resize', size);
+  try { window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw); } catch (e) {}
+  new MutationObserver(draw).observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme'] });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(draw);
+  size(); setReadout();
+})();
+</script>
+</body>
+</html>
